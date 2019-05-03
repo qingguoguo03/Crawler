@@ -1,0 +1,7 @@
+
+1.【纠结的转义字符】https://www.infoq.cn/article/2011/01/regular-expressions-1
+需要转义的： ^$()*+?.[\{|
+re.search('^\[[^\]]+]','[aa]')
+<re.Match object; span=(0, 4), match='[aa]'>
+备注：[{ 只需要转义左边即可，右边python自动识别是组内符号还是字符串
+
