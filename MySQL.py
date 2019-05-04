@@ -19,7 +19,9 @@ sql = 'CREATE TABLE IF NOT EXISTS students (id VARCHAR(255) NOT NULL, name VARCH
 cursor.execute(sql) 
 db.close()
 
-#  查询数据fetchone()方法来获取所有数据，而不是用 fetchall()全部结果以元组问部返回如果数据量很大那占用开销会非常高。 因此，推荐使用fetchone的方法
+
+# 在实际的数据抓取过程中，大部分情况下需要插入数据，但是我们关心的是会不会 1+1现重复 数据， 如果出现了，我们希望更新数据而不是重复保存一次。 另外，就像前面所说的动态构造 SQL 的问题，所以这里可以再实现一种去重的方法，如果数据存在， 则更新数据;如果数据不存在，则插 入数据 。 另外，这种做法支持灵活的字典传值 
+# 查询数据fetchone()方法来获取所有数据，而不是用 fetchall()全部结果以元组问部返回如果数据量很大那占用开销会非常高。 因此，推荐使用fetchone的方法
 def insert_data(cursor, table, data):
     
     if not isinstance(data, list): # 所有单条记录全部转为list 都以插入多条记录的形式执行
